@@ -20,15 +20,10 @@
 import { getProduct } from "@/composables/getProduct.js";
 export default {
   name: "ProductPage",
-  methods: {
-    fetchProduct() {},
-  },
-  mounted() {
-    this.fetchProduct();
-  },
+
   setup() {
-    const { product, error, isLoading } = getProduct();
-    return { product, error, isLoading };
+    const { product, isLoading, error } = getProduct();
+    return { product, isLoading, error };
   },
 };
 </script>
