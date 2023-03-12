@@ -1,14 +1,79 @@
-import { createStore } from 'vuex'
-
-export default createStore({
+import { createStore } from "vuex";
+import axios from "axios";
+import { auth } from "../firebase/config";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
+const store = createStore({
   state: {
+    user: null,
+    products: [],
+    productsApi: "https://dummyjson.com/products",
+    isAuthenticated: false,
+    isLoading: false,
+    error: null,
   },
-  getters: {
-  },
+  getters: {},
   mutations: {
+    setUser(state, payload) {
+      state.user = payload;
+    },
+    setIsAuthenticated(state, payload) {
+      state.isAuthenticated = payload;
+    },
+    setProducts(state, products) {
+      state.products = products;
+    },
+    setLoading(state, isLoading) {
+      state.isLoading = isLoading;
+    },
+    setError(state, error) {
+      state.error = error;
+    },
   },
   actions: {
+    async fetchProducts(context) {
+      context.commit("setLoading", true);
+      try {
+        const res = await axios.get(context.state.productsApi);
+        context.commit("setProducts", res.data.products);
+        context.commit("setLoading", false);
+      } catch (error) {
+        context.commit("setError", error);
+        context.commit("setLoading", false);
+      }
+    },
+
+    async signup(context, { email, password }) {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      if (res) {
+        context.commit("setUser", res.user);
+      } else {
+        throw new Error("Could not complete signup");
+      }
+    },
+    async login(context, { email, password }) {
+      const res = await signInWithEmailAndPassword(auth, email, password);
+      if (res) {
+        context.commit("setUser", res.user);
+      } else {
+        throw new Error("Could not complete login");
+      }
+    },
+    async logout(context) {
+      await signOut(auth);
+      context.commit("setUser", null);
+    },
   },
-  modules: {
-  }
-})
+});
+
+const unsubscribe = onAuthStateChanged(auth, (user) => {
+  store.commit("setIsAuthenticated", true);
+  store.commit("setUser", user);
+  unsubscribe();
+});
+
+export default store;
