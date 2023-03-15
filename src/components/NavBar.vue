@@ -79,4 +79,29 @@ button {
   color: #cdc6c3;
   cursor: pointer;
 }
+
+@media (max-width: 425px) {
+  nav a {
+    font-size: 0.75rem;
+    padding: 8px;
+    margin-right: 7px;
+  }
+  span {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 375px) {
+  nav {
+    padding: 15px;
+  }
+  nav a {
+    font-size: 0.7rem;
+    padding: 7px;
+    margin-right: 6px;
+  }
+  span {
+    font-size: 0.65rem;
+  }
+}
 </style>

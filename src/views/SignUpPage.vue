@@ -4,11 +4,11 @@
       <h1>Signup Page</h1>
       <div class="formGroup">
         <label for="email">Email</label>
-        <input type="text" name="email" v-model="email" required />
+        <input type="text" name="email" v-model="email" autocomplete="email" required />
       </div>
       <div class="formGroup">
         <label for="password">Password</label>
-        <input type="password" name="password" v-model="password" required />
+        <input type="password" name="newPassword" v-model="password" autocomplete="password" required />
       </div>
       <button type="submit">Signup</button>
       <div v-if="error">{{ error }}</div>
