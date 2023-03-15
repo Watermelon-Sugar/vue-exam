@@ -44,7 +44,6 @@ export default {
   margin-bottom: 30px;
   padding: 15px;
   text-align: center;
-  
 }
 img {
   width: 300px;
@@ -67,7 +66,6 @@ span {
 }
 
 @media (max-width: 768px) {
- 
   .card {
     width: 300px;
     height: 350px;
@@ -76,28 +74,29 @@ span {
     width: 200px;
     height: 200px;
   }
-  p{
+  p {
     font-size: 1rem;
   }
-  h5, h4 {
+  h5,
+  h4 {
     font-size: 0.8rem;
   }
 }
 @media (max-width: 426px) {
- 
   .card {
     width: 250px;
     height: 300px;
   }
-  
+
   .card img {
     width: 150px;
     height: 150px;
   }
-  p{
+  p {
     font-size: 0.8rem;
   }
-  h5, h4 {
+  h5,
+  h4 {
     font-size: 0.6rem;
   }
 }
@@ -111,16 +110,15 @@ span {
     width: 100px;
     height: 100px;
   }
-  p{
+  p {
     font-size: 0.7rem;
   }
-  h5, h4 {
+  h5,
+  h4 {
     font-size: 0.5rem;
   }
   span {
     font-size: 0.5rem;
   }
 }
-
-
 </style>

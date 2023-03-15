@@ -8,7 +8,13 @@
       </div>
       <div class="formGroup">
         <label for="password">Password </label>
-        <input type="password" autocomplete="password" name="currentPassword" v-model="password" required />
+        <input
+          type="password"
+          autocomplete="password"
+          name="currentPassword"
+          v-model="password"
+          required
+        />
       </div>
       <button type="submit">Login</button>
       <div v-if="error">{{ error }}</div>
@@ -60,7 +66,7 @@ export default {
   align-items: center;
   margin-bottom: 1rem;
 }
-label{
+label {
   margin-right: 15px;
   font-weight: 400;
   font-size: 1rem;
@@ -69,23 +75,22 @@ label{
 
 input {
   font-weight: 400;
-  height: .75rem;
+  height: 0.75rem;
   border: 1px solid #e2e2;
-  box-shadow: 0px 2px 2px rgba(33, 37, 41, 0.5),
-    0px 0px 1px rgba(33, 37, 41, 0.8);
+  box-shadow: 0px 2px 2px rgba(33, 37, 41, 0.5), 0px 0px 1px rgba(33, 37, 41, 0.8);
   border-radius: 0.25rem;
   padding: 0.5rem;
   margin-bottom: 1rem;
   font-size: 1rem;
   color: #383a3a;
 }
- input:focus {
+input:focus {
   outline: none;
   border: 1px solid #e2e2;
 }
 
-button{
-   width:150px;
+button {
+  width: 150px;
   padding: 0.5rem;
   background-color: #dcd0c3;
   border: none;

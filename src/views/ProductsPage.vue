@@ -96,10 +96,11 @@ span {
     width: 200px;
     height: 200px;
   }
-  p{
+  p {
     font-size: 1rem;
   }
-  h5, h4 {
+  h5,
+  h4 {
     font-size: 0.8rem;
   }
 }
@@ -116,10 +117,11 @@ span {
     width: 150px;
     height: 150px;
   }
-  p{
+  p {
     font-size: 0.8rem;
   }
-  h5, h4 {
+  h5,
+  h4 {
     font-size: 0.6rem;
   }
 }
@@ -133,10 +135,11 @@ span {
     width: 100px;
     height: 100px;
   }
-  p{
+  p {
     font-size: 0.7rem;
   }
-  h5, h4 {
+  h5,
+  h4 {
     font-size: 0.5rem;
   }
   span {
@@ -156,13 +159,14 @@ span {
     width: 50px;
     height: 50px;
   }
-  p{
+  p {
     font-size: 0.5rem;
   }
-  h5, h4 {
+  h5,
+  h4 {
     font-size: 0.5rem;
   }
-  span{
+  span {
     font-size: 0.4rem;
   }
 }
