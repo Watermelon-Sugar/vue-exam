@@ -1,5 +1,5 @@
-hosted link: https://alt-vue-exam.web.app/
-# alt-vue-exam
+Hosted link: https://vue-exam.netlify.app/
+# vue-exam
 
 ## Project setup
 ```
