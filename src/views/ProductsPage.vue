@@ -4,9 +4,9 @@
     <div v-if="isLoading">
       <p>Loading...</p>
     </div>
-    <div v-else>
-      <router-link :to="'/products/:id'" class="router-link"
-        ><div class="card" v-for="product in products" :key="product.id">
+    <div v-else class="card-container">
+      <div class="card" v-for="product in products" :key="product.id">
+        <router-link :to="'/products/:id'" class="router-link">
           <img :src="product.thumbnail" alt="product-img" />
 
           <strong>
@@ -15,8 +15,8 @@
           <h4>${{ product.price }}</h4>
           <h5>{{ product.description }}</h5>
           <span>#{{ product.category }}</span>
-        </div>
-      </router-link>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -50,20 +50,26 @@ export default {
   font-size: 1.5rem;
   color: #383a3a;
 }
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 400px;
+  width: 400px;
+  height: 550px;
   transition: 0.3s;
   border-radius: 5px;
   margin-bottom: 30px;
   padding: 15px;
   text-align: center;
-  position: relative;
-  left: 38%;
 }
-img {
-  width: 100%;
+.card img {
+  width: 300px;
+  height: 300px;
 }
 .router-link {
   text-decoration: none;

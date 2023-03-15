@@ -1,19 +1,25 @@
 <template>
   <div class="home">
     <h1>Products List</h1>
-    <div v-for="product in products" :key="product.id">
-      <div class="card">
-        <img :src="product.thumbnail" alt="product-img" />
+    <div v-if="isLoading">
+      <p>Loading...</p>
+    </div>
+    <div v-else class="card-container">
+      <div class="card" v-for="product in products" :key="product.id">
+        <router-link :to="'/products/:id'" class="router-link">
+          <div v-if="!user">
+          <img :src="product.thumbnail" alt="product-img" />
 
-        <strong>
-          <p>{{ product.brand }} - {{ product.title }}</p></strong
-        >
-
-        <div v-if="user">
+          <strong>
+            <p>{{ product.brand }} - {{ product.title }}</p></strong
+          >
+          </div>
+          <div v-if="user">
           <h4>${{ product.price }}</h4>
-          <span>{{ product.description }}</span>
-          <h6>#{{ product.category }}</h6>
-        </div>
+          <h5>{{ product.description }}</h5>
+          <span>#{{ product.category }}</span>
+          </div>
+        </router-link>
       </div>
       <br />
     </div>
@@ -22,15 +28,19 @@
 
 <script>
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 export default {
   name: "HomePage",
   setup() {
-    const products = computed(() => store.state.products);
     const store = useStore();
+    const products = computed(() => store.state.products);
+    const isLoading = computed(() => store.state.isLoading);
+    onMounted(() => {
+      store.dispatch("fetchProducts");
+    });
     return {
       user: computed(() => store.state.user),
-      products,
+      products, isLoading,
     };
   },
 };
@@ -49,34 +59,39 @@ h1 {
   text-decoration: none;
   color: #383a3a;
 }
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 400px;
+  width: 400px;
+  max-height: 550px;
   transition: 0.3s;
   border-radius: 5px;
   margin-bottom: 30px;
   padding: 15px;
   text-align: center;
-  position: relative;
-  left: 38%;
 }
-img {
-  width: 100%;
+.card img {
+  width: 300px;
+  height: 300px;
+}
+.router-link {
+  text-decoration: none;
 }
 h5,
 h4 {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #383a3a;
 }
 p {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #726a77;
 }
 span {
   color: #d16644;
-  font-size: 1rem;
-}
-h6 {
-  font-size: 1rem;
-}
-</style>
+}</style>
