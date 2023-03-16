@@ -1,6 +1,6 @@
 <template>
-  <nav>
-    <template v-if="isAuthenticated">
+  <div>
+    <nav>
       <div>
         <router-link to="/">Home</router-link>
       </div>
@@ -15,9 +15,9 @@
         <span>Logged in as {{ user.email }}</span>
         <button @click="handleClick">Logout</button>
       </div>
-    </template>
-  </nav>
-  <router-view />
+    </nav>
+    <router-view />
+  </div>
 </template>
 
 <script>
@@ -32,7 +32,6 @@ export default {
     return {
       handleClick,
       user: computed(() => store.state.user),
-      isAuthenticated: computed(() => store.state.isAuthenticated),
     };
   },
 };
@@ -40,7 +39,7 @@ export default {
 <style scoped>
 nav {
   padding: 20px;
-  background-color: #dcd0c3;
+  background-color: #323232;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -48,7 +47,7 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #383a3a;
+  color: #cdc6c3;
   font-size: 1rem;
   text-decoration: none;
   padding: 10px;
@@ -56,9 +55,8 @@ nav a {
   margin-right: 8px;
 }
 nav a.router-link-exact-active {
-  color: #d16644;
-  background-color: #8e8f92;
-  border-radius: 10px;
+  color: #bfa181;
+  border-bottom: 2px solid #bfa181;
 }
 .right {
   display: flex;
@@ -68,19 +66,20 @@ nav a.router-link-exact-active {
 }
 span {
   font-size: 0.75rem;
-  color: #d16644;
+  color: #ddd0c8;
 }
+
 button {
-  margin-left: 5px;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  background-color: #a38f85;
-  color: #cdc6c3;
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  border: #bfa181;
+  border-radius: 0.5rem;
+  background-color: #bfa181;
+  color: #323232;
   cursor: pointer;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 426px) {
   nav a {
     font-size: 0.75rem;
     padding: 8px;
@@ -91,7 +90,7 @@ button {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 376px) {
   nav {
     padding: 15px;
   }
@@ -104,40 +103,45 @@ button {
     font-size: 0.65rem;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 321px) {
   nav a {
     font-size: 0.65rem;
     padding: 6px;
-    margin-right: 5px;
+    margin-right: 20px;
   }
   span {
     font-size: 0.6rem;
   }
 }
 
-@media (max-width: 280px) {
-  nav{
+@media (min-width: 240px) and (max-width: 282px) {
+  nav {
     padding: 10px;
   }
   nav a {
     font-size: 0.6rem;
     padding: 5px;
-    margin-right: 4px;
+    margin-right: 0;
   }
   span {
     font-size: 0.55rem;
   }
+  button {
+    font-size: .6rem;
+    margin-left: 0.5rem;
+    padding: 0.4rem;
+  }
 }
-@media (max-width: 240px) {
+@media (max-width: 241px) {
   nav a {
     font-size: 0.55rem;
     padding: 4px;
-    margin-right: 3px;
+    margin-right: 13px;
   }
   span {
     font-size: 0.5rem;
   }
-  button{
+  button {
     font-size: 0.5rem;
   }
 }

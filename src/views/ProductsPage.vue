@@ -1,23 +1,26 @@
 <template>
-  <div class="products">
-    <h1 class="products-title">{{ msg }}</h1>
-    <div v-if="isLoading">
-      <p>Loading...</p>
-    </div>
-    <div v-else class="card-container">
-      <div class="card" v-for="product in products" :key="product.id">
-        <img :src="product.thumbnail" alt="product-img" />
+  <div class="container">
+    <div class="products">
+      <h2 class="products-title">{{ msg }}</h2>
+      <div v-if="isLoading">
+        <p>Loading...</p>
+      </div>
+      <div v-else class="card-container">
+        <div class="card" v-for="product in products" :key="product.id">
+          <img :src="product.thumbnail" alt="product-img" />
 
-        <strong>
-          <p>{{ product.brand }} - {{ product.title }}</p></strong
-        >
-        <h4>${{ product.price }}</h4>
-        <h5>{{ product.description }}</h5>
-        <span>#{{ product.category }}</span>
+          <strong>
+            <p>{{ product.brand }} - {{ product.title }}</p></strong
+          >
+          <h4>${{ product.price }}</h4>
+          <h5>{{ product.description }}</h5>
+          <span>#{{ product.category }}</span>
 
-        <div class="view">
-          <router-link :to="'/products/:id'" class="router-link">
-            <span>View</span></router-link>
+          <div class="view">
+            <router-link :to="'/products/:id'" class="router-link">
+              <span>View</span></router-link
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -48,10 +51,16 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  background-color: #ddd0c8;
+  height: 100%;
+  color: #323232;
+}
 .products-title {
-  font-weight: 500;
+  margin: 0;
+  font-weight: 600;
   font-size: 1.5rem;
-  color: #383a3a;
+  padding: 0.5rem;
 }
 .card-container {
   display: flex;
@@ -59,11 +68,10 @@ export default {
   gap: 20px;
   justify-content: center;
 }
-
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.26);
   width: 400px;
-  height: auto;
+  max-height: 550px;
   transition: 0.3s;
   border-radius: 5px;
   margin-bottom: 30px;
@@ -72,33 +80,25 @@ export default {
 }
 .card img {
   width: 300px;
-  height: 300px;
+  height: 280px;
 }
 .router-link {
   text-decoration: none;
 }
-
-.view{
-  margin-top: 15px;
-}
-.view span{
-  
-  font-weight: 500;
-  color: #383a3a;
-  font-size: 1.2rem;
-}
-
 h5,
 h4 {
   font-size: 1rem;
-  color: #383a3a;
 }
 p {
   font-size: 1.25rem;
-  color: #726a77;
 }
-span {
-  color: #d16644;
+.view {
+  margin-top: .9rem;
+}
+.view span{
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #0c1a1a;
 }
 
 @media (max-width: 768px) {
@@ -120,6 +120,9 @@ span {
   h4 {
     font-size: 0.8rem;
   }
+  .view {
+    margin-top: 1rem;
+  }
 }
 
 @media (max-width: 426px) {
@@ -130,7 +133,7 @@ span {
     width: 200px;
     height: auto;
   }
-  
+
   .card img {
     width: 150px;
     height: 150px;
@@ -153,7 +156,7 @@ span {
     width: 100px;
     height: 100px;
   }
-  .view{
+  .view {
     margin-top: 5px;
   }
   .view span {
@@ -194,5 +197,4 @@ span {
     font-size: 0.4rem;
   }
 }
-
 </style>

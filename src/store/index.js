@@ -62,21 +62,49 @@ const store = createStore({
         context.commit("setLoading", false);
       }
     },
-    async signup(context, { email, password }) {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-      if (res) {
-        context.commit("setUser", res.user);
-      } else {
-        throw new Error("Could not complete signup");
+    async signup({ commit }, details) {
+      const { email, password } = details;
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+      } catch (error) {
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            alert("Email already in use");
+            break;
+          case "auth/invalid-email":
+            alert("Invalid email address");
+            break;
+          case "auth/weak-password":
+            alert("Password is too weak");
+            break;
+          case "auth/operation-not-allowed":
+            alert("Operation not allowed");
+            break;
+          default:
+            alert("Something went wrong");
+        }
+        return;
       }
+      commit("setUser", auth.currentUser);
     },
-    async login(context, { email, password }) {
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      if (res) {
-        context.commit("setUser", res.user);
-      } else {
-        throw new Error("Could not complete login");
+    async login({ commit }, details) {
+      const { email, password } = details;
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+      } catch (error) {
+        switch (error.code) {
+          case "auth/invalid-email":
+            alert("Invalid email address");
+            break;
+          case "auth/wrong-password":
+            alert("Wrong password");
+            break;
+          default:
+            alert("Something went wrong");
+        }
+        return;
       }
+      commit("setUser", auth.currentUser);
     },
     async logout(context) {
       await signOut(auth);
@@ -86,9 +114,14 @@ const store = createStore({
 });
 
 const unsubscribe = onAuthStateChanged(auth, (user) => {
-  store.commit("setIsAuthenticated", true);
-  store.commit("setUser", user);
-  unsubscribe();
+  if (user) {
+    store.commit("setUser", user);
+    store.commit("setIsAuthenticated", true);
+  } else {
+    store.commit("setUser", null);
+    store.commit("setIsAuthenticated", false);
+  }
+  unsubscribe()
 });
 
 export default store;

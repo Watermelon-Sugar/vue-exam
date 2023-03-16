@@ -1,25 +1,27 @@
 <template>
-  <div class="home">
-    <h1 class="products-title">Products List</h1>
-    <div v-if="isLoading">
-      <p>Loading...</p>
-    </div>
-    <div v-else class="card-container">
-      <div class="card" v-for="product in products" :key="product.id">
-        <div v-if="!user">
-          <img :src="product.thumbnail" alt="product-img" />
-
-          <strong>
-            <p>{{ product.brand }} - {{ product.title }}</p></strong
-          >
-        </div>
+  <div class="container">
+    <div class="home">
+      <h2 class="products-title">
+        Product List
+      </h2>
+      <div v-if="isLoading">
+        Loading...
+      </div>
+      <div v-else class="card-container">
+        <div class="card" v-for="product in products" :key="product.id">
+          <div v-if="!user">
+            <img :src="product.thumbnail" alt="product-img" />
+            <strong>
+              <p>{{ product.brand }} - {{ product.title }}</p></strong
+            >
+          </div>
         <div v-if="user">
-          <h4>${{ product.price }}</h4>
-          <h5>{{ product.description }}</h5>
-          <span>#{{ product.category }}</span>
+            <h4>${{ product.price }}</h4>
+            <h5>{{ product.description }}</h5>
+            <span>#{{ product.category }}</span>
+          </div>
         </div>
       </div>
-      <br />
     </div>
   </div>
 </template>
@@ -46,17 +48,16 @@ export default {
 </script>
 
 <style scoped>
-.products-title {
-  font-weight: 500;
-  font-size: 1.5rem;
-  color: #383a3a;
+.container {
+  background-color: #ddd0c8;
+  height: 100%;
+  color: #323232;
 }
-.home {
-  margin: 10px 20px;
-  font-weight: 500;
+.products-title {
+  margin: 0;
+  font-weight: 600;
   font-size: 1.5rem;
-  text-decoration: none;
-  color: #383a3a;
+  padding: .5rem;
 }
 .card-container {
   display: flex;
@@ -64,9 +65,8 @@ export default {
   gap: 20px;
   justify-content: center;
 }
-
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.26);
   width: 400px;
   max-height: 550px;
   transition: 0.3s;
@@ -82,17 +82,12 @@ export default {
 .router-link {
   text-decoration: none;
 }
-h5,
-h4 {
+h5, h4 {
+  
   font-size: 1rem;
-  color: #383a3a;
 }
-p {
+p{
   font-size: 1.25rem;
-  color: #726a77;
-}
-span {
-  color: #d16644;
 }
 
 @media (max-width: 768px) {

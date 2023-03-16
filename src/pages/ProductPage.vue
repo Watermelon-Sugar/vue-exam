@@ -1,16 +1,18 @@
 <template>
-  <div class="product">
-    <div v-if="isLoading">Loading...</div>
-    <div v-else-if="error">{{ error }}</div>
-    <div v-else class="card-container">
-      <div class="card">
-        <img :src="product.thumbnail" alt="product-img" />
-        <strong>
-          <p>{{ product.brand }} - {{ product.title }}</p>
-        </strong>
-        <h4>${{ product.price }}</h4>
-        <h5>{{ product.description }}</h5>
-        <span>#{{ product.category }}</span>
+  <div class="container">
+    <div class="product">
+      <div v-if="isLoading">Loading...</div>
+      <div v-else-if="error">{{ error }}</div>
+      <div v-else class="card-container">
+        <div class="card">
+          <img :src="product.thumbnail" alt="product-img" />
+          <strong>
+            <p>{{ product.brand }} - {{ product.title }}</p>
+          </strong>
+          <h4>${{ product.price }}</h4>
+          <h5>{{ product.description }}</h5>
+          <span>#{{ product.category }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -29,41 +31,40 @@ export default {
 </script>
 
 <style scoped>
-.product {
-  margin: 30px 0px;
+.container {
+  background-color: #ddd0c8;
+  height: 100vh;
+  color: #323232;
 }
+
 .card-container {
   display: flex;
   justify-content: center;
 }
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 400px;
+box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.26);
+  width: 400px;
+  max-height: 550px;
   transition: 0.3s;
   border-radius: 5px;
   margin-bottom: 30px;
-  padding: 15px;
+  padding: 1rem;
   text-align: center;
+  margin-top: 3rem;
 }
 img {
   width: 300px;
   height: 300px;
 }
-.router-link {
-  text-decoration: none;
-}
+
 h5,
 h4 {
   font-size: 1rem;
-  color: #383a3a;
 }
 p {
   font-size: 1.25rem;
-  color: #726a77;
 }
-span {
-  color: #d16644;
-}
+
 
 @media (max-width: 768px) {
   .card {
