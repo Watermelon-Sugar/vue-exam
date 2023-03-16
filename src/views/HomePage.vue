@@ -6,20 +6,18 @@
     </div>
     <div v-else class="card-container">
       <div class="card" v-for="product in products" :key="product.id">
-        <router-link :to="'/products/:id'" class="router-link">
-          <div v-if="!user">
-            <img :src="product.thumbnail" alt="product-img" />
+        <div v-if="!user">
+          <img :src="product.thumbnail" alt="product-img" />
 
-            <strong>
-              <p>{{ product.brand }} - {{ product.title }}</p></strong
-            >
-          </div>
-          <div v-if="user">
-            <h4>${{ product.price }}</h4>
-            <h5>{{ product.description }}</h5>
-            <span>#{{ product.category }}</span>
-          </div>
-        </router-link>
+          <strong>
+            <p>{{ product.brand }} - {{ product.title }}</p></strong
+          >
+        </div>
+        <div v-if="user">
+          <h4>${{ product.price }}</h4>
+          <h5>{{ product.description }}</h5>
+          <span>#{{ product.category }}</span>
+        </div>
       </div>
       <br />
     </div>

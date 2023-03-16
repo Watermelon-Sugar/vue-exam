@@ -6,16 +6,19 @@
     </div>
     <div v-else class="card-container">
       <div class="card" v-for="product in products" :key="product.id">
-        <router-link :to="'/products/:id'" class="router-link">
-          <img :src="product.thumbnail" alt="product-img" />
+        <img :src="product.thumbnail" alt="product-img" />
 
-          <strong>
-            <p>{{ product.brand }} - {{ product.title }}</p></strong
-          >
-          <h4>${{ product.price }}</h4>
-          <h5>{{ product.description }}</h5>
-          <span>#{{ product.category }}</span>
-        </router-link>
+        <strong>
+          <p>{{ product.brand }} - {{ product.title }}</p></strong
+        >
+        <h4>${{ product.price }}</h4>
+        <h5>{{ product.description }}</h5>
+        <span>#{{ product.category }}</span>
+
+        <div class="view">
+          <router-link :to="'/products/:id'" class="router-link">
+            <span>View</span></router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -60,7 +63,7 @@ export default {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 400px;
-  height: 550px;
+  height: auto;
   transition: 0.3s;
   border-radius: 5px;
   margin-bottom: 30px;
@@ -74,6 +77,17 @@ export default {
 .router-link {
   text-decoration: none;
 }
+
+.view{
+  margin-top: 15px;
+}
+.view span{
+  
+  font-weight: 500;
+  color: #383a3a;
+  font-size: 1.2rem;
+}
+
 h5,
 h4 {
   font-size: 1rem;
@@ -90,11 +104,14 @@ span {
 @media (max-width: 768px) {
   .card {
     width: 300px;
-    height: 400px;
+    height: auto;
   }
   .card img {
     width: 200px;
     height: 200px;
+  }
+  .view span {
+    font-size: 1rem;
   }
   p {
     font-size: 1rem;
@@ -111,8 +128,9 @@ span {
   }
   .card {
     width: 200px;
-    height: 310px;
+    height: auto;
   }
+  
   .card img {
     width: 150px;
     height: 150px;
@@ -129,11 +147,17 @@ span {
 @media (max-width: 376px) {
   .card {
     width: 150px;
-    height: 240px;
+    height: auto;
   }
   .card img {
     width: 100px;
     height: 100px;
+  }
+  .view{
+    margin-top: 5px;
+  }
+  .view span {
+    font-size: 0.7rem;
   }
   p {
     font-size: 0.7rem;
@@ -153,7 +177,7 @@ span {
   }
   .card {
     width: 100px;
-    height: 200px;
+    height: auto;
   }
   .card img {
     width: 50px;
@@ -170,4 +194,5 @@ span {
     font-size: 0.4rem;
   }
 }
+
 </style>

@@ -104,4 +104,41 @@ button {
     font-size: 0.65rem;
   }
 }
+@media (max-width: 320px) {
+  nav a {
+    font-size: 0.65rem;
+    padding: 6px;
+    margin-right: 5px;
+  }
+  span {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 280px) {
+  nav{
+    padding: 10px;
+  }
+  nav a {
+    font-size: 0.6rem;
+    padding: 5px;
+    margin-right: 4px;
+  }
+  span {
+    font-size: 0.55rem;
+  }
+}
+@media (max-width: 240px) {
+  nav a {
+    font-size: 0.55rem;
+    padding: 4px;
+    margin-right: 3px;
+  }
+  span {
+    font-size: 0.5rem;
+  }
+  button{
+    font-size: 0.5rem;
+  }
+}
 </style>
