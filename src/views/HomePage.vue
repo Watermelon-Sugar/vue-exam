@@ -48,7 +48,11 @@ export default {
 </script>
 
 <style scoped>
-
+.container {
+  background-color: #ddd0c8;
+  height: 100%;
+  color: #323232;
+}
 .products-title {
   margin: 0;
   font-weight: 600;
