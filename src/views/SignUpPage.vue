@@ -64,10 +64,7 @@ export default {
 
 <style scoped>
 .container {
-  width: 100%;
-  height: 100vh;
-  background-color: #ddd0c8;
-  color: #323232;
+  margin-top: 6.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,9 +119,8 @@ input {
 }
 
 input::placeholder {
-  color: inherit;
+  color: #bfa181;
 }
-
 input:focus {
   opacity: 1;
 }
@@ -142,95 +138,134 @@ button {
   text-transform: uppercase;
   border: #bfa181;
 }
-@media (max-width: 425px) {
+@media (max-width: 768px) {
+  .container{
+    margin-top: 4rem;
+  }
   .signup {
-    width: 300px;
-    height: 400px;
+  width: 350px;
+  height: 400px;
   }
   h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
   }
   label {
     font-size: 1rem;
   }
   input {
-    max-width: 250px;
+    max-width: 300px;
     margin: 1.5rem;
     font-size: 1rem;
   }
 
   button{
-    margin: 2.5rem 0;
+    margin: 3rem 0;
     padding: .7rem 1.5rem;
   }
+
 }
 @media (max-width: 375px) {
+    .container {
+  margin-top: 3rem;
+}
   .signup {
-    width: 280px;
-    height: 380px;
+    width: 250px;
+    height: 350px;
   }
   h1 {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
   }
  
   input {
-    max-width: 250px;
-    margin: 1.5rem 1rem;
+    max-width: 220px;
+    margin: 1rem 1rem;
     font-size: 1rem;
   }
 
   input::placeholder {
- font-size: .9rem;
+ font-size: .8rem;
 }
 
   button{
+    margin: 2rem 0;
     padding: .7rem 1.3rem;
   }
 }
 @media (max-width: 320px) {
+    .container {
+  margin-top: 2.5rem;
+}
   .signup {
-    width: 240px;
-    height: 350px;
+    width: 220px;
+    height: 320px;
   }
   h1 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
  label{
   
   margin-left: 1rem;
  }
   input {
-    max-width: 210px;
-    margin: 1.2rem 1rem;
+    max-width: 190px;
+    margin: .6rem 1rem;
   }
-
+  input::placeholder {
+ font-size: .75rem;
+}
   button{
-    margin: 2rem 0;
+    padding: .7rem .8rem;
+    font-size: .7rem;
+    margin: 1.7rem 0;
   }
 }
-@media (max-width: 240px) {
-  .signup {
-    width: 180px;
-    height: 330px;
+@media (max-width: 280px) {
+   .signup {
+    width: 200px;
+    height:280px;
   }
   h1 {
     font-size: 1rem;
   }
+  label {
+    font-size:.9rem;
+  }
+  input {
+    max-width: 170px;
+    margin: .6rem 1rem;
+  }
+  input::placeholder {
+ font-size: .7rem;
+}
+  button{
+    padding: .5rem .6rem;
+    margin: 1.4rem 0;
+    font-size: .65rem;
+  }
+}
+@media (max-width: 240px) {
+  .signup {
+    width: 150px;
+    height: 250px;
+  }
+  h1 {
+    font-size: .8rem;
+  }
  label{
-  font-size: .95rem;
+  font-size: .8rem;
   margin-left: .5rem;
  }
   input {
-    max-width: 160px;
-    margin: 1rem .6rem;
+    max-width: 130px;
+    margin: 0rem .6rem;
   }
 input::placeholder {
- font-size: .8rem;
+ font-size: .54rem;
 }
   button{
-    padding: .4rem .8rem;
-    margin: 2rem 0;
+    padding: .4rem .5rem;
+    margin: .8rem 0;
+    font-size: .55rem;
   }
 }
 </style>
