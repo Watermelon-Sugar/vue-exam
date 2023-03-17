@@ -83,7 +83,7 @@ p {
     font-size: 0.8rem;
   }
 }
-@media (max-width: 426px) {
+@media (max-width: 425px) {
   .card {
     width: 250px;
     height: 300px;
@@ -102,7 +102,7 @@ p {
   }
 }
 
-@media (max-width: 376px) {
+@media (max-width: 375px) {
   .card {
     width: 200px;
     height: 200px;

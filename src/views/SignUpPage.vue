@@ -142,7 +142,7 @@ button {
   text-transform: uppercase;
   border: #bfa181;
 }
-@media (max-width: 426px) {
+@media (max-width: 425px) {
   .signup {
     width: 300px;
     height: 400px;
@@ -165,7 +165,7 @@ button {
     padding: .7rem 1.5rem;
   }
 }
-@media (max-width: 376px) {
+@media (max-width: 375px) {
   .signup {
     width: 280px;
     height: 380px;
@@ -188,7 +188,7 @@ button {
     padding: .7rem 1.3rem;
   }
 }
-@media (max-width: 321px) {
+@media (max-width: 320px) {
   .signup {
     width: 240px;
     height: 350px;
@@ -209,7 +209,7 @@ button {
     margin: 2rem 0;
   }
 }
-@media (max-width: 241px) {
+@media (max-width: 240px) {
   .signup {
     width: 180px;
     height: 330px;

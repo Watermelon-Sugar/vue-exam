@@ -125,7 +125,7 @@ p {
   }
 }
 
-@media (max-width: 426px) {
+@media (max-width: 425px) {
   .products-title {
     font-size: 1.2rem;
   }
@@ -147,7 +147,7 @@ p {
   }
 }
 
-@media (max-width: 376px) {
+@media (max-width: 375px) {
   .card {
     width: 150px;
     height: auto;
@@ -174,7 +174,7 @@ p {
   }
 }
 
-@media (max-width: 321px) {
+@media (max-width: 320px) {
   .products-title {
     font-size: 1rem;
   }

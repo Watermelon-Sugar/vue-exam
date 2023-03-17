@@ -79,7 +79,7 @@ button {
   cursor: pointer;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 425px) {
   nav a {
     font-size: 0.75rem;
     padding: 8px;
@@ -90,7 +90,7 @@ button {
   }
 }
 
-@media (max-width: 376px) {
+@media (max-width: 375px) {
   nav {
     padding: 15px;
   }
@@ -103,7 +103,7 @@ button {
     font-size: 0.65rem;
   }
 }
-@media (max-width: 321px) {
+@media (max-width: 320px) {
   nav a {
     font-size: 0.65rem;
     padding: 6px;
@@ -114,7 +114,7 @@ button {
   }
 }
 
-@media (min-width: 240px) and (max-width: 282px) {
+@media(max-width: 280px) {
   nav {
     padding: 10px;
   }
@@ -132,7 +132,7 @@ button {
     padding: 0.4rem;
   }
 }
-@media (max-width: 241px) {
+@media (max-width: 240px) {
   nav a {
     font-size: 0.55rem;
     padding: 4px;
