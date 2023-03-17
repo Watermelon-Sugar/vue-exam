@@ -32,6 +32,7 @@ const routes = [
   },
   {
     path: "/:catchAll(.*)",
+    name: "ErrorPage",
     component: () => import("@/pages/ErrorPage.vue"),
   },
 ];
