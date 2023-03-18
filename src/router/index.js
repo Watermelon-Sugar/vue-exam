@@ -64,11 +64,11 @@ router.beforeEach((to, from, next) => {
   if (isAuthenticated() && to.name === "Login") {
     next({ name: "Home" });
   } else if (!canAccess) {
-    next({ name: "Login" });
+    next({ name: "Home" });
   } else if (to.path === "/products" && !isAuthenticated()) {
-    next({ name: "Login" });
+    next({ name: "Home" });
   } else if (to.path === "/products/:id" && !isAuthenticated()) {
-    next({ name: "Login" });
+    next({ name: "Home" });
   } else {
     next();
   }
