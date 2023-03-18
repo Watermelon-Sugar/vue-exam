@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { auth } from "../firebase/config";
 import HomePage from "@/views/HomePage.vue";
 
 const routes = [
@@ -27,7 +28,7 @@ const routes = [
     name: "Product",
     component: () => import("@/pages/ProductPage.vue"),
     meta: {
-      isAuthenticated: true,
+      authIsRequired: true,
     },
   },
   {
@@ -42,5 +43,27 @@ const router = createRouter({
   routes,
 });
 
+const isAuthenticated = () => !!auth.currentUser;
+
+const canUserAccess = (to) => {
+  if (!isAuthenticated() && to.meta.authIsRequired && to.name !== "Login") {
+    return false;
+  }
+
+  return true;
+};
+
+router.beforeEach((to, from, next) => {
+  const canAccess = canUserAccess(to);
+  if (isAuthenticated() && to.name === "Login") {
+    next({ name: "Home" });
+  } else if (!canAccess) {
+    next({ name: "Login" });
+  } else if (to.path === "/products" && !isAuthenticated()) {
+    next({ name: "Login" });
+  } else {
+    next();
+  }
+});
 
 export default router;
