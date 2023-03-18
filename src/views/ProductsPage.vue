@@ -1,39 +1,58 @@
 <template>
-  <div class="container">
-    <div class="products">
-      <h2 class="products-title">{{ msg }}</h2>
-      <div v-if="isLoading">
-        <p>Loading...</p>
-      </div>
-      <div v-else class="card-container">
-        <div class="card" v-for="product in products" :key="product.id">
-          <img :src="product.thumbnail" alt="product-img" />
-
-          <strong>
-            <p>{{ product.brand }} - {{ product.title }}</p></strong
-          >
-          <h4>${{ product.price }}</h4>
-          <h5>{{ product.description }}</h5>
-          <span>#{{ product.category }}</span>
-
-          <div class="view">
-            <router-link :to="'/products/:id'" class="router-link">
-              <span>View</span></router-link
-            >
-          </div>
-        </div>
-      </div>
+<div>
+    <div class="container">
+    <div v-if="isLoading">
+      <p>Loading...</p>
     </div>
+    <Swiper
+      :grabCursor="true"
+      :a11y="true"
+      :modules="modules"
+      :spaceBetween="50"
+      :slidesPerView="1"
+      :navigation="true"
+      :pagination="{ clickable: true }"
+      :onSwiper="onSwiper"
+      :onSlideChange="onSlideChange"
+      :autoplay="{ delay: 5000, disableOnInteraction: false }"
+    >
+      <SwiperSlide v-for="product in products" :key="product.id">
+        <img :src="product.thumbnail" alt="product-img" />
+      </SwiperSlide>
+      
+    </Swiper>
   </div>
+  <div class="view">
+        <router-link :to="'/products/:id'" class="router-link">
+          <span>View</span></router-link
+        >
+      </div>
+</div>
 </template>
 
 <script>
+import { Navigation, Pagination, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
   name: "ProductsPage",
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   setup() {
+    const onSwiper = (swiper) => {
+      return swiper;
+    };
+    const onSlideChange = () => {
+      return;
+    };
+
     const store = useStore();
     const products = computed(() => store.state.products);
     const isLoading = computed(() => store.state.isLoading);
@@ -42,6 +61,9 @@ export default {
       store.dispatch("fetchProducts");
     });
     return {
+      onSwiper,
+      onSlideChange,
+      modules: [Navigation, Pagination, A11y],
       products,
       isLoading,
       msg,
@@ -51,150 +73,62 @@ export default {
 </script>
 
 <style scoped>
+.swiper {
+  width: 600px;
+  height: 500px;
+  padding: 50px;
+}
+.swiper-slide {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
 .container {
-  background-color: #ddd0c8;
-  height: 100%;
+  display: flex;
+  justify-content: center;
   color: #323232;
 }
-.products-title {
-  margin: 0;
-  font-weight: 600;
-  font-size: 1.5rem;
-  padding: 0.5rem;
-}
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-.card {
-  box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.26);
-  width: 400px;
-  max-height: 550px;
-  transition: 0.3s;
-  border-radius: 5px;
-  margin-bottom: 30px;
-  padding: 15px;
-  text-align: center;
-}
-.card img {
-  width: 300px;
-  height: 280px;
-}
+
 .router-link {
   text-decoration: none;
 }
-h5,
-h4 {
-  font-size: 1rem;
-}
-p {
-  font-size: 1.25rem;
-}
+
 .view {
-  margin-top: .9rem;
+  display: flex;
+  justify-content: center;
 }
-.view span{
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #0c1a1a;
+.view span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #b78700;
 }
 
 @media (max-width: 768px) {
-  .card {
-    width: 300px;
-    height: auto;
-  }
-  .card img {
-    width: 200px;
-    height: 200px;
-  }
+  .swiper {
+  width: 500px;
+  height: 400px;
+}
   .view span {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
-  p {
-    font-size: 1rem;
-  }
-  h5,
-  h4 {
-    font-size: 0.8rem;
-  }
-  .view {
-    margin-top: 1rem;
-  }
+ 
 }
 
 @media (max-width: 425px) {
-  .products-title {
-    font-size: 1.2rem;
-  }
-  .card {
-    width: 200px;
-    height: auto;
-  }
-
-  .card img {
-    width: 150px;
-    height: 150px;
-  }
-  p {
-    font-size: 0.8rem;
-  }
-  h5,
-  h4 {
-    font-size: 0.6rem;
-  }
+  .swiper {
+  width: 350px;
+  height: 300px;
 }
-
-@media (max-width: 375px) {
-  .card {
-    width: 150px;
-    height: auto;
-  }
-  .card img {
-    width: 100px;
-    height: 100px;
-  }
-  .view {
-    margin-top: 5px;
-  }
   .view span {
-    font-size: 0.7rem;
-  }
-  p {
-    font-size: 0.7rem;
-  }
-  h5,
-  h4 {
-    font-size: 0.5rem;
-  }
-  span {
-    font-size: 0.5rem;
+    padding: 20px;
+    font-size: .85rem;
   }
 }
 
-@media (max-width: 320px) {
-  .products-title {
-    font-size: 1rem;
-  }
-  .card {
-    width: 100px;
-    height: auto;
-  }
-  .card img {
-    width: 50px;
-    height: 50px;
-  }
-  p {
-    font-size: 0.5rem;
-  }
-  h5,
-  h4 {
-    font-size: 0.5rem;
-  }
-  span {
-    font-size: 0.4rem;
-  }
-}
 </style>

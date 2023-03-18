@@ -107,10 +107,15 @@ button {
   nav a {
     font-size: 0.65rem;
     padding: 6px;
-    margin-right: 20px;
+    margin-right: 10px;
   }
   span {
     font-size: 0.6rem;
+  }
+    button {
+    font-size: .6rem;
+    margin-left: 0.5rem;
+    padding: 0.4rem;
   }
 }
 
@@ -121,14 +126,14 @@ button {
   nav a {
     font-size: 0.6rem;
     padding: 5px;
-    margin-right: 0;
+    margin-right: 5px;
   }
   span {
     font-size: 0.55rem;
   }
   button {
     font-size: .6rem;
-    margin-left: 0.5rem;
+    margin-left: 0;
     padding: 0.4rem;
   }
 }
@@ -136,7 +141,7 @@ button {
   nav a {
     font-size: 0.55rem;
     padding: 4px;
-    margin-right: 13px;
+    margin-right: 2px;
   }
   span {
     font-size: 0.5rem;

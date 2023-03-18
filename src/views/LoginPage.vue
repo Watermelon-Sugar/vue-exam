@@ -9,7 +9,7 @@
             <input
               type="email"
               name="email"
-              autocomplete="off"
+              autocomplete="on"
               v-model="email"
               placeholder="Email"
               required
@@ -71,7 +71,6 @@ export default {
 }
 form {
   color: #323232;
-  background-color: #ddd0c8;
 }
 .login {
   width: 400px;
@@ -138,7 +137,6 @@ button {
   text-transform: uppercase;
   border: #bfa181;
 }
-
 @media (max-width: 768px) {
   .container{
     margin-top: 4rem;
@@ -183,7 +181,7 @@ button {
     font-size: 1rem;
   }
 
-  input::placeholder {
+ input, input::placeholder {
  font-size: .8rem;
 }
 
@@ -211,7 +209,7 @@ button {
     max-width: 190px;
     margin: .6rem 1rem;
   }
-  input::placeholder {
+ input, input::placeholder {
  font-size: .75rem;
 }
   button{
@@ -223,7 +221,7 @@ button {
 @media (max-width: 280px) {
    .login {
     width: 200px;
-    height:280px;
+    height:300px;
   }
   h1 {
     font-size: 1rem;
@@ -235,7 +233,7 @@ button {
     max-width: 170px;
     margin: .6rem 1rem;
   }
-  input::placeholder {
+ input, input::placeholder {
  font-size: .7rem;
 }
   button{
@@ -260,7 +258,8 @@ button {
     max-width: 130px;
     margin: 0rem .6rem;
   }
-input::placeholder {
+
+input, input::placeholder {
  font-size: .54rem;
 }
   button{

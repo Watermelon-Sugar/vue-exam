@@ -32,9 +32,9 @@ export default {
 
 <style scoped>
 .container {
-  background-color: #ddd0c8;
-  height: 100vh;
-  color: #323232;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-container {

@@ -1,26 +1,23 @@
 <template>
   <div class="container">
     <div class="home">
-      <h2 class="products-title">
-        Product List
-      </h2>
-      <div v-if="isLoading">
-        Loading...
+      <h1>Welcome to Lac Shop!</h1>
+      <div v-if="!user">
+        <h4>
+          <router-link to="/signup" class="router-link">Signup</router-link>
+          if you do not have an existing account.
+        </h4>
+        <h4>
+          <router-link to="/login" class="router-link">Login</router-link>
+          if you already have an account with us.
+        </h4>
       </div>
-      <div v-else class="card-container">
-        <div class="card" v-for="product in products" :key="product.id">
-          <div v-if="!user">
-            <img :src="product.thumbnail" alt="product-img" />
-            <strong>
-              <p>{{ product.brand }} - {{ product.title }}</p></strong
-            >
-          </div>
-        <div v-if="user">
-            <h4>${{ product.price }}</h4>
-            <h5>{{ product.description }}</h5>
-            <span>#{{ product.category }}</span>
-          </div>
-        </div>
+
+      <div v-if="user">
+        <h2>
+          Welcome, {{ user.email }}, click
+          <router-link to="/products" class="here">here</router-link> to view the catalog.
+        </h2>
       </div>
     </div>
   </div>
@@ -28,20 +25,14 @@
 
 <script>
 import { useStore } from "vuex";
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 export default {
   name: "HomePage",
   setup() {
     const store = useStore();
-    const products = computed(() => store.state.products);
-    const isLoading = computed(() => store.state.isLoading);
-    onMounted(() => {
-      store.dispatch("fetchProducts");
-    });
+
     return {
       user: computed(() => store.state.user),
-      products,
-      isLoading,
     };
   },
 };
@@ -49,128 +40,116 @@ export default {
 
 <style scoped>
 .container {
-  background-color: #ddd0c8;
-  height: 100%;
-  color: #323232;
-}
-.products-title {
-  margin: 0;
-  font-weight: 600;
-  font-size: 1.5rem;
-  padding: .5rem;
-}
-.card-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
-}
-.card {
-  box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.26);
-  width: 400px;
-  max-height: 550px;
-  transition: 0.3s;
-  border-radius: 5px;
-  margin-bottom: 30px;
-  padding: 15px;
+  align-items: center;
   text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  padding-top: 13rem;
 }
-.card img {
-  width: 300px;
-  height: 300px;
+.here {
+  text-decoration: none;
+  color: #b78700;
 }
 .router-link {
   text-decoration: none;
+  font-size: 1.8rem;
+  color: #b78700;
 }
-h5, h4 {
-  
-  font-size: 1rem;
+h1 {
+  font-size: 3rem;
 }
-p{
-  font-size: 1.25rem;
+h4 {
+  font-size: 1.3rem;
 }
 
 @media (max-width: 768px) {
-  .card {
-    width: 300px;
-    height: 400px;
+  .container {
+    padding-top: 10rem;
   }
-  .card img {
-    width: 200px;
-    height: 200px;
+  h1 {
+    font-size: 2.5rem;
   }
-  p {
-    font-size: 1rem;
-  }
-  h5,
   h4 {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
 }
 
-@media (max-width: 425px) {
-  .products-title {
-    font-size: 1.2rem;
+@media (max-width: 426px) {
+  .container {
+    padding-top: 11rem;
   }
-  .card {
-    width: 200px;
-    height: 310px;
+  h1 {
+    font-size: 2rem;
   }
-  .card img {
-    width: 150px;
-    height: 150px;
-  }
-  p {
-    font-size: 0.8rem;
-  }
-  h5,
   h4 {
-    font-size: 0.6rem;
+    font-size: 1rem;
+  }
+  .router-link {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.4rem;
   }
 }
 
 @media (max-width: 375px) {
-  .card {
-    width: 150px;
-    height: 240px;
+  .container {
+    padding-top: 12rem;
   }
-  .card img {
-    width: 100px;
-    height: 100px;
+  h1 {
+    font-size: 1.8rem;
   }
-  p {
-    font-size: 0.7rem;
-  }
-  h5,
   h4 {
-    font-size: 0.5rem;
+    font-size: 0.85rem;
   }
-  span {
-    font-size: 0.5rem;
+  .router-link {
+    font-size: 1.2rem;
+  }
+  h2 {
+    font-size: 1.2rem;
   }
 }
 
-@media (max-width: 325px) {
-  .products-title {
+@media (max-width: 320px) {
+  h1 {
+    font-size: 1.65rem;
+  }
+  h4 {
+    font-size: 0.75rem;
+  }
+  .router-link {
     font-size: 1rem;
   }
-  .card {
-    width: 100px;
-    height: 200px;
+  h2 {
+    font-size: 1.1rem;
   }
-  .card img {
-    width: 50px;
-    height: 50px;
+}
+
+@media (max-width: 280px) {
+  h1 {
+    font-size: 1.5rem;
   }
-  p {
-    font-size: 0.5rem;
-  }
-  h5,
   h4 {
-    font-size: 0.5rem;
+    font-size: 0.7rem;
   }
-  span {
-    font-size: 0.4rem;
+  .router-link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 240px) {
+  h1 {
+    font-size: 1.25em;
+  }
+  h4 {
+    font-size: 0.6rem;
+  }
+  .router-link {
+    font-size: 0.8rem;
+  }
+  h2 {
+    font-size: 0.75rem;
   }
 }
 </style>
