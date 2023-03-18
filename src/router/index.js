@@ -21,7 +21,9 @@ const routes = [
   {
     path: "/products",
     name: "Products",
-    component: () => import("@/views/ProductsPage.vue"),
+    component: () => import("@/views/ProductsPage.vue"),  meta: {
+      authIsRequired: true,
+    },
   },
   {
     path: "/products/:id",
@@ -60,6 +62,8 @@ router.beforeEach((to, from, next) => {
   } else if (!canAccess) {
     next({ name: "Login" });
   } else if (to.path === "/products" && !isAuthenticated()) {
+    next({ name: "Login" });
+  } else if (to.path === "/products/:id" && !isAuthenticated()) {
     next({ name: "Login" });
   } else {
     next();
