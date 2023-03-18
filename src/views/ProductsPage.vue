@@ -1,9 +1,10 @@
 <template>
 <div>
-    <div class="container">
-    <div v-if="isLoading">
+   <div v-if="isLoading">
       <p>Loading...</p>
     </div>
+    <div class="container">
+   
     <Swiper
       :grabCursor="true"
       :a11y="true"

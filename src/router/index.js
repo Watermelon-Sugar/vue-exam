@@ -21,18 +21,22 @@ const routes = [
   {
     path: "/products",
     name: "Products",
-    component: () => import("@/views/ProductsPage.vue"),  meta: {
-      authIsRequired: true,
-    },
-  },
-  {
-    path: "/products/:id",
-    name: "Product",
-    component: () => import("@/pages/ProductPage.vue"),
+    component: () => import("@/views/ProductsPage.vue"),
     meta: {
       authIsRequired: true,
     },
+    children: [
+      {
+        path: "/products/:id",
+        name: "Product",
+        component: () => import("@/pages/ProductPage.vue"),
+        meta: {
+          authIsRequired: true,
+        },
+      },
+    ],
   },
+
   {
     path: "/:catchAll(.*)",
     name: "ErrorPage",
