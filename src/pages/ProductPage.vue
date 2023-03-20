@@ -5,13 +5,13 @@
       <div v-else-if="error">{{ error }}</div>
       <div v-else class="card-container">
         <div class="card">
-          <img :src="product.thumbnail" alt="product-img" />
+          <img :src="productImage" alt="" />
           <strong>
-            <p>{{ product.brand }} - {{ product.title }}</p>
+            <p>{{ productBrand }} - {{ productTitle }}</p>
           </strong>
-          <h4>${{ product.price }}</h4>
-          <h5>{{ product.description }}</h5>
-          <span>#{{ product.category }}</span>
+          <h4>${{ productPrice }}</h4>
+          <h5>{{ productDescription }}</h5>
+          <span>#{{ productCategory }}</span>
         </div>
       </div>
     </div>
@@ -19,15 +19,39 @@
 </template>
 
 <script>
-import { getProduct } from "@/composables/getProduct.js";
 export default {
-  name: "ProductPage",
+    data() {
+        return {
+            currentProduct: {}
+        }
+    },
+    created() {
+        const currentProductId = this.$route.params.id
+        this.currentProduct = this.$store.getters['getProducts'].find(prod => prod.id = currentProductId)
+        console.log(this.currentProduct)
+    },
+    computed: {
+        productImage() {
+            return this.currentProduct.images[0]
+        },
+        productBrand() {
+            return this.currentProduct.brand
+        },
+productTitle() {
+            return this.currentProduct.title
+        },
+        productCategory() {
+            return this.currentProduct.category
+        },
+        productDescription() {
+            return this.currentProduct.description
+        },
+        productPrice() {
+            return this.currentProduct.price
+        }
+    }
+}
 
-  setup() {
-    const { product, isLoading, error } = getProduct();
-    return { product, isLoading, error };
-  },
-};
 </script>
 
 <style scoped>
@@ -42,7 +66,7 @@ export default {
   justify-content: center;
 }
 .card {
-box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.26);
   width: 400px;
   max-height: 550px;
   transition: 0.3s;
@@ -64,7 +88,6 @@ h4 {
 p {
   font-size: 1.25rem;
 }
-
 
 @media (max-width: 768px) {
   .card {
