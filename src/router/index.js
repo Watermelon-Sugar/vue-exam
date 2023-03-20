@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { auth } from "../firebase/config";
 import HomePage from "@/views/HomePage.vue";
+import ProductsPage from "@/views/ProductsPage.vue";
+import ProductPage from "@/pages/ProductPage.vue";
+
 
 const routes = [
   {
@@ -21,22 +24,21 @@ const routes = [
   {
     path: "/products",
     name: "Products",
-    component: () => import("@/views/ProductsPage.vue"),
+    component: ProductsPage,
     meta: {
       authIsRequired: true,
     },
-    children: [
-      {
-        path: "/products/:id",
-        name: "Product",
-        component: () => import("@/pages/ProductPage.vue"),
-        meta: {
-          authIsRequired: true,
-        },
-      },
-    ],
+   
   },
-
+  {
+    path: "/products/:id",
+    name: "Product",
+    component: ProductPage,
+    meta: {
+      authIsRequired: true,
+    },
+  },
+  
   {
     path: "/:catchAll(.*)",
     name: "ErrorPage",
@@ -66,8 +68,6 @@ router.beforeEach((to, from, next) => {
   } else if (!canAccess) {
     next({ name: "Home" });
   } else if (to.path === "/products" && !isAuthenticated()) {
-    next({ name: "Home" });
-  } else if (to.path === "/products/:id" && !isAuthenticated()) {
     next({ name: "Home" });
   } else {
     next();
